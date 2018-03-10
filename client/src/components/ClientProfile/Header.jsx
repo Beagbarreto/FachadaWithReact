@@ -1,4 +1,37 @@
 import React, { PropTypes } from 'react';
+import { Link, IndexLink } from 'react-router';
+import Auth from '../modules/Auth';
+
+
+const Base = ({ children }) => (
+  <div>
+    <div className="top-bar">
+      <div className="top-bar-left">
+        <IndexLink to="/">Fachada</IndexLink>
+      </div>
+
+      {Auth.isUserAuthenticated() ? (
+        <div className="top-bar-right">
+          <Link to="/logout">Log out</Link>
+        </div>
+      )
+      )}
+
+    </div>
+
+    { /* child component will be rendered here */ }
+    {children}
+
+  </div>
+);
+
+Base.propTypes = {
+  children: PropTypes.object.isRequired
+};
+
+
+
+/*import React, { PropTypes } from 'react';
 import {List, ListItem} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
@@ -143,4 +176,4 @@ const Dashboard = () => (
 </div>
 
 
-export default Dashboard;
+export default Dashboard;*/
